@@ -14,10 +14,15 @@ getPublicIpAddress() {
 }
 
 getDnsRecordName() {
+  host=""
+
+  if [ ! -z "USEHOSTNAME" ]; then
+    host=$(hostname -s).
+  fi
   if [ ! -z "$SUBDOMAIN" ]; then
-    echo $SUBDOMAIN.$ZONE
+    echo $host$SUBDOMAIN.$ZONE
   else
-    echo $ZONE
+    echo $host$ZONE
   fi
 }
 
